@@ -16,7 +16,7 @@
 *******************************************************************************/
 #include "CRC.h"
 
-//CRC高位表
+//CRC HighBit Table
 const unsigned char auchCRCHi[] = {
 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0,
 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41,
@@ -46,7 +46,7 @@ const unsigned char auchCRCHi[] = {
 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40
 };
 
-//CRC低位表
+//CRC LowBit Table
 const unsigned char auchCRCLo[]={
 0x00, 0xC0, 0xC1, 0x01, 0xC3, 0x03, 0x02, 0xC2, 0xC6, 0x06,
 0x07, 0xC7, 0x05, 0xC5, 0xC4, 0x04, 0xCC, 0x0C, 0x0D, 0xCD,
@@ -76,20 +76,36 @@ const unsigned char auchCRCLo[]={
 0x43, 0x83, 0x41, 0x81, 0x80, 0x40
 };
 
+/*******************************************************************************
+| FUNCTION NAME   :Get_Crc16	
+| CALLED BY 	  : 													 
+| PRECONDITIONS   : 										  
+| INPUT PARAMETERS: 														   
+| RETURN VALUE	  :
+| DESCRIPTION	  :
+*******************************************************************************/
 unsigned int Get_Crc16(unsigned char *puchMsg,unsigned int usDataLen)
 {
-	unsigned char uchCRCHi=0xFF;  //
-	unsigned char uchCRCLo=0xFF;  //
-	unsigned long uIndex;  //CRC 
+	unsigned char uchCRCHi=0xFF;  
+	unsigned char uchCRCLo=0xFF;  
+	unsigned long uIndex;  
 	while(usDataLen--)  
 	{
-		uIndex=uchCRCHi^*puchMsg++; //??CRC 
+		uIndex=uchCRCHi^*puchMsg++; 
 		uchCRCHi=uchCRCLo^auchCRCHi[uIndex];
 		uchCRCLo=auchCRCLo[uIndex];
 	}
 		return (uchCRCHi<<8|uchCRCLo);
 }
 
+/*******************************************************************************
+| FUNCTION NAME   :Get_Crc8		
+| CALLED BY 	  : 													 
+| PRECONDITIONS   : 										  
+| INPUT PARAMETERS: 														   
+| RETURN VALUE	  :
+| DESCRIPTION	  :
+*******************************************************************************/
 unsigned char Get_Crc8(unsigned char *ptr,unsigned int len)
 {
 	unsigned char crc;
