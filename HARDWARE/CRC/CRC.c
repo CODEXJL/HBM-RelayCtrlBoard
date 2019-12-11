@@ -15,7 +15,7 @@
 | 2018-05-29     01.00.00     xujialiang        Creation
 *******************************************************************************/
 #include "CRC.h"
-
+//1211upload
 //CRC HighBit Table
 const unsigned char auchCRCHi[] = {
 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0,
